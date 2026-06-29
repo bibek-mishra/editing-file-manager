@@ -5,27 +5,35 @@ folders = ["imgs","vids","audios","projectfiles","random"]
 img = [".png",".jpg",".webp",".jpeg",".gif",".bmp",".tiff"]
 vid = [".mp4",".mov",".mkv",".avi",".webm",".flv"]
 audio = [".mp3",".wav",".acc",".m4a",".ogg",".aac",".flac"]
-projectfile = [".aep",".prproj",".drp",".ai",".psd"]
+projectfile = [".aep",".prproj",".drp",".ai",".psd",".prin"]
 
 
-# os.chdir("C:\Users\mishr\Documents\editing projects")
+os.chdir("C:\\Users\\mishr\\Documents\\editing projects")
+folder_names = os.listdir()
+
+while True :
+    name = input("Enter your folder name: ")
+
+    if name not in folder_names:
+        print("This project folder does not exist.")
+        print("Create a folder and move all items to that folder to start sorting.")
+        continue
+    else:
+        os.chdir(f"C:\\Users\\mishr\\Documents\\editing projects\\{name}")
+        break
+
 
 files = os.listdir()
 
 
-while True:
-    project_name = input("> ")
-    if not os.path.exists(project_name):
-        os.mkdir(project_name)
-        break 
-    else:
-        print("You can't use this file name.")
-        continue
+
+if not os.path.exists("assets"):
+    os.mkdir("assets")
 
 
 
 for f in folders:
-    folder_path = os.path.join(project_name,f)
+    folder_path = os.path.join("assets",f)
 
     if not os.path.exists(folder_path):
         os.mkdir(folder_path)
@@ -41,13 +49,13 @@ for file in files:
         name, ext = os.path.splitext(file)
 
         if ext.lower() in img:
-            path = os.path.join(project_name,"imgs",file)
+            path = os.path.join("assets","imgs",file)
         elif ext.lower() in vid:
-            path = os.path.join(project_name,"vids",file)
+            path = os.path.join("assets","vids",file)
         elif ext.lower() in audio:
-            path = os.path.join(project_name,"audios",file)
+            path = os.path.join("assets","audios",file)
         elif ext.lower() in projectfile:
-            path = os.path.join(project_name,"projectfiles",file)
+            path = os.path.join("assets","projectfiles",file)
         else:
             path = os.path.join("random",file)
         
