@@ -57,6 +57,6 @@ for file in files:
         elif ext.lower() in projectfile:
             path = os.path.join("assets","projectfiles",file)
         else:
-            path = os.path.join("random",file)
+            path = os.path.join("assets","random",file)
         
-        os.rename(file, path)
+        os.rename(file,path)
